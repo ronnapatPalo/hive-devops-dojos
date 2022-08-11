@@ -17,11 +17,15 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-	stage('Exercise_1') {
-		sh('../dojo-2/solutions/exercise_1_ronnapat.sh')
-	}
-	stage('Exercise_2') {
-		sh('../dojo-2/solutions/exercise_2_ronnapat.sh')
-	}
+        stage('Exercise_1') {
+            steps {
+                sh('../dojo-2/solutions/exercise_1_ronnapat.sh')
+            }
+        }
+        stage('Exercise_2') {
+            steps {
+                sh('../dojo-2/solutions/exercise_2_ronnapat.sh')
+            }
+        }
     }
 }
