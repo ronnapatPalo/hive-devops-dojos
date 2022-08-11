@@ -1,1 +1,1 @@
-grep -o devops dojo-2/example_ronnapat.txt | wc -l
+grep -o devops dojo-2/example.txt | wc -l
