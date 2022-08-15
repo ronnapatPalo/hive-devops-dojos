@@ -44,8 +44,23 @@ pipeline {
                     """
                 }
             }
+        }
+        stage('Test Lighthouse DEV') {
+            steps {
+                dir("${SCRIPTS_PATH}") {
+                   sh """
+                    echo "Lighthouse test"
+                    sh lighthouse-testing.sh test
+                    """
+                }
+            }
             post {
                 always {
+                    dir("${SCRIPTS_PATH}") {
+                        sh """
+                            sh lighthouse-testing.sh close
+                            """
+                    }
                     sh """
                         lsof -ti :3000 | xargs kill &
                     """
