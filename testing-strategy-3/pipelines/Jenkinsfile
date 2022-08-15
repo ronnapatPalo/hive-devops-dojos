@@ -4,7 +4,9 @@ pipeline {
     tools {nodejs "NodeJS"}
 
     environment {
-        PROJECT_PATH="${env.JENKINS_HOME}/workspace/OnBoardingPart3/testing-strategy-3"
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3"
+        WEB_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3/web"
+        E2E_WEB_TESTING_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3/e2e-web"
         SCRIPTS_PATH="${PROJECT_PATH}/scripts"
         DEV="dev"
         ALPHA="alpha"
@@ -15,9 +17,11 @@ pipeline {
     stages {
         stage('Build') {
            steps {
-                dir("${SCRIPTS_PATH}") {
+                dir("${WEB_PATH}") {
                     sh """
-                    echo "Build"
+                    echo "Build web"
+                    npm install
+                    npm start
                     """
                 }
             }
@@ -27,6 +31,13 @@ pipeline {
                 dir("${SCRIPTS_PATH}") {
                    sh """
                     echo "Test"
+                    """
+                }
+            }
+            post: {
+                always: {
+                    sh """
+                        lsof -ti :3000 | xargs kill &
                     """
                 }
             }
