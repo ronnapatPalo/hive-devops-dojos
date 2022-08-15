@@ -4,6 +4,6 @@
   "high": false, 
   "critical": true, 
   "package-manager": "auto",
-  "allowlist": [],
+  "allowlist": ["GHSA-phwq-j96m-2c2q", "GHSA-xvch-5gv4-984h"],
   "registry": "https://registry.npmjs.org"
 }
