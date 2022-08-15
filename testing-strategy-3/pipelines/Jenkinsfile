@@ -18,7 +18,7 @@ pipeline {
         stage('Audit') {
             steps {
                 dir("${SCRIPTS_PATH}") {
-                    sh('audit.sh test')
+                    sh('./audit.sh test')
                 }
             }
         }
