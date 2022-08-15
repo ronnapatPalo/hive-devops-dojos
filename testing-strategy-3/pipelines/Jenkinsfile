@@ -15,6 +15,13 @@ pipeline {
     }
 
     stages {
+        stage('Audit') {
+            steps {
+                dir("${SCRIPTS_PATH}") {
+                    sh ('audit.sh test')
+                }
+            }
+        }
         stage('Build') {
            steps {
                 dir("${WEB_PATH}") {
